@@ -1,0 +1,21 @@
+# ROS2 workspace - ignore build artifacts
+build/
+install/
+log/
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# C++
+*.o
+*.so
+*.a
