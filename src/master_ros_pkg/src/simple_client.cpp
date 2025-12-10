@@ -11,6 +11,10 @@ class ConcatStringClient : rclcpp::Node{
       void send_request(const std::string &str1, const std::string &str2)
       {
         while(!client_->wait_for_service(std::chrono::seconds(1))){
+            if (!rclcpp::ok()) {
+         RCLCPP_ERROR(this->get_logger(), "Interrupted while waiting for the service. Exiting.");
+         return;
+         }
             RCLCPP_WARN(this->get_logger(), "Server is not available, retrying....");
         }
         auto request= std::make_shared<master_ros2_interface::srv::ConcatString::Request>();
