@@ -1,0 +1,14 @@
+# - Config file for the rrbot_description package
+# It defines the following variables
+#  rrbot_description_INCLUDE_DIRS - include directories for FooBar
+#  rrbot_description_LIBRARIES    - libraries to link against
+#  rrbot_description_EXECUTABLE   - the bar executable
+
+set(rrbot_description_INCLUDE_DIRS "@CONF_INCLUDE_DIRS@")
+
+# Our library dependencies (contains definitions for IMPORTED targets)
+include("${rrbot_description_DIR}/export_rrbot_description.cmake")
+
+# These are IMPORTED targets created by rrbot_descriptionTargets.cmake
+
+
