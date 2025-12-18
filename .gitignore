@@ -19,3 +19,6 @@ __pycache__/
 *.o
 *.so
 *.a
+
+
+.deb*.deb
