@@ -1,0 +1,140 @@
+<?xml version="1.0" ?>
+<robot name="noxbot_description" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find noxbot_description_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find noxbot_description_description)/urdf/noxbot_description.trans" />
+<xacro:include filename="$(find noxbot_description_description)/urdf/noxbot_description.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.0005930931306221237 3.257168781287659e-08 0.034" rpy="0 0 0"/>
+    <mass value="0.15946138995882295"/>
+    <inertia ixx="0.000207" iyy="0.000904" izz="0.00111" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find noxbot_description_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find noxbot_description_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_left_wheel_1">
+  <inertial>
+    <origin xyz="-1.514124197757316e-07 0.01249999999999999 0.0" rpy="0 0 0"/>
+    <mass value="0.07247595346969399"/>
+    <inertia ixx="2.2e-05" iyy="3.6e-05" izz="2.2e-05" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.04726 -0.047 -0.034" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find noxbot_description_description)/meshes/front_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.04726 -0.047 -0.034" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find noxbot_description_description)/meshes/front_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_right_wheel_1">
+  <inertial>
+    <origin xyz="-5.256926698116171e-08 -0.01249999999999999 0.0" rpy="0 0 0"/>
+    <mass value="0.07247595346969399"/>
+    <inertia ixx="2.2e-05" iyy="3.6e-05" izz="2.2e-05" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.046968 0.047 -0.034" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find noxbot_description_description)/meshes/front_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.046968 0.047 -0.034" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find noxbot_description_description)/meshes/front_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rear_left_wheel_1">
+  <inertial>
+    <origin xyz="2.0133841800717978e-07 0.01249999999999999 0.0" rpy="0 0 0"/>
+    <mass value="0.07247595346969399"/>
+    <inertia ixx="2.2e-05" iyy="3.6e-05" izz="2.2e-05" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.075421 -0.047 -0.034" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find noxbot_description_description)/meshes/rear_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.075421 -0.047 -0.034" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find noxbot_description_description)/meshes/rear_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rear_right_wheel_1">
+  <inertial>
+    <origin xyz="1.650254726204281e-07 -0.01249999999999999 6.938893903907228e-18" rpy="0 0 0"/>
+    <mass value="0.07247595346969399"/>
+    <inertia ixx="2.2e-05" iyy="3.6e-05" izz="2.2e-05" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.074755 0.047 -0.034" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find noxbot_description_description)/meshes/rear_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.074755 0.047 -0.034" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find noxbot_description_description)/meshes/rear_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="front_left_base_joint" type="continuous">
+  <origin xyz="0.04726 0.047 0.034" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="front_right_base_joint" type="continuous">
+  <origin xyz="0.046968 -0.047 0.034" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_right_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="rear_left_base_joint" type="continuous">
+  <origin xyz="-0.075421 0.047 0.034" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rear_left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="rear_right_base_joint" type="continuous">
+  <origin xyz="-0.074755 -0.047 0.034" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rear_right_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+</robot>
