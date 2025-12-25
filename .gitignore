@@ -23,3 +23,5 @@ __pycache__/
 
 .deb*
 .deb
+*.md
+*.sh
