@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<robot name="two_joints_robot" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<gazebo>
+  <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+    <parameters>$(find two_joints_robot)/config/controller.yaml</parameters>
+  </plugin>  
+</gazebo>
+
+</robot>
