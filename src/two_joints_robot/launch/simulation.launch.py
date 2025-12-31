@@ -50,6 +50,10 @@ def generate_launch_description():
              'velocity_control'],
         output='screen'
     )
+
+    load_velocity_controller= ExecuteProcess(
+        cmd=['ros2','control','load_controller','--set-state','inactive','sine_controller']
+    )
     
     ld.add_action( robot_state_publisher_node )
     ld.add_action( spawn_node )

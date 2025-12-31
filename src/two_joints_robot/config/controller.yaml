@@ -8,6 +8,8 @@ controller_manager:
        type: forward_command_controller/ForwardCommandController
     joint_state_broadcaster:
        type: joint_state_broadcaster/JointStateBroadcaster   
+    sine_controller:
+       type: sine_controller/SineController    
 
 position_control:
   ros__parameters:
@@ -28,3 +30,10 @@ velocity_control:
      state_interfaces:
        - position
        - velocity
+
+sine_controller:
+  ros__parameters:
+     update_rate: 100
+     joints:
+       - base_joint
+       - link1_link2
