@@ -2,6 +2,7 @@
 build/
 install/
 log/
+ros2_control_template/
 
 # IDE
 .vscode/
@@ -25,3 +26,4 @@ __pycache__/
 .deb
 *.md
 *.sh
+

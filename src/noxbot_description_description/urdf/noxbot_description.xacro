@@ -109,11 +109,46 @@
   </collision>
 </link>
 
+<link name="left_wheel_link">  
+  <inertial>
+    <mass value="0.0001"/>
+    <inertia ixx="1e-6" iyy="1e-6" izz="1e-6"
+             ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+</link>
+
+<link name="right_wheel_link">
+  <inertial>
+    <mass value="0.0001"/>
+    <inertia ixx="1e-6" iyy="1e-6" izz="1e-6"
+             ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+</link>
+
+
+
+<joint name="left_wheel_joint" type="continuous">
+  <parent link="base_link"/>
+  <child link="left_wheel_link"/>
+  <origin xyz="0.0 0.047 0.034"/>
+  <axis xyz="0 1 0"/>
+</joint>
+
+<joint name="right_wheel_joint" type="continuous">
+  <parent link="base_link"/>
+  <child link="right_wheel_link"/>
+  <origin xyz="0.0 -0.047 0.034"/>
+  <axis xyz="0 1 0"/>
+</joint>
+
+
+
 <joint name="front_left_base_joint" type="continuous">
   <origin xyz="0.04726 0.047 0.034" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="front_left_wheel_1"/>
   <axis xyz="0.0 1.0 0.0"/>
+  <mimic joint="left_wheel_joint"/>
 </joint>
 
 <joint name="front_right_base_joint" type="continuous">
@@ -121,6 +156,7 @@
   <parent link="base_link"/>
   <child link="front_right_wheel_1"/>
   <axis xyz="0.0 1.0 0.0"/>
+  <mimic joint="right_wheel_joint"/>
 </joint>
 
 <joint name="rear_left_base_joint" type="continuous">
@@ -128,6 +164,7 @@
   <parent link="base_link"/>
   <child link="rear_left_wheel_1"/>
   <axis xyz="0.0 1.0 0.0"/>
+  <mimic joint="left_wheel_joint"/>
 </joint>
 
 <joint name="rear_right_base_joint" type="continuous">
@@ -135,6 +172,7 @@
   <parent link="base_link"/>
   <child link="rear_right_wheel_1"/>
   <axis xyz="0.0 1.0 0.0"/>
+  <mimic joint="right_wheel_joint"/>
 </joint>
 
 </robot>
