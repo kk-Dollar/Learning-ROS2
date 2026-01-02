@@ -1,9 +1,10 @@
 <?xml version="1.0" ?>
 <robot name="noxbot_description" xmlns:xacro="http://www.ros.org/wiki/xacro" >
-  <ros2_control name="diff_hardware_interface"  type="system">
+  <ros2_control name="mobile_base_hw_interface" type="system">
     <hardware>
-      <plugin>mock_components/GenericSystem</plugin>
-      <param name="calculate_dynamics">true</param>
+      <!-- <plugin>mock_components/GenericSystem</plugin>
+      <param name="calculate_dynamics">true</param> -->
+      <plugin>mobile_base_hardware/MobileBaseHwInterface</plugin>
     </hardware>
     <joint name="left_wheel_joint">
       <command_interface name="velocity"/>

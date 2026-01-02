@@ -20,7 +20,8 @@ def generate_launch_description():
         executable="ros2_control_node",
         remappings=[("/controller_manager/robot_description","robot_description")],
         parameters=[noxbot_controllers,
-        {'robot_description': noxbot_description }],
+        # {'robot_description': noxbot_description } this one is depreciated not needed it automatically subscribe to /robot_description topic
+        ],
         output="screen"
     )
     joint_state_broadcaster_spawner=Node(

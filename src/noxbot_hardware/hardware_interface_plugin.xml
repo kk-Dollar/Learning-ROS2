@@ -1,0 +1,8 @@
+<library path="noxbot_hardware">
+  <class
+    name="mobile_base_hardware/MobileBaseHwInterface"
+    type="mobile_base_hardware::MobileBaseHwInterface"
+    base_class_type="hardware_interface::SystemInterface">
+    <description>Hardware Interface for 4 wheel normal motor wheel with 2 virtual joint</description>
+  </class>
+</library>

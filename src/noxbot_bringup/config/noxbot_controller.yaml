@@ -22,3 +22,9 @@ diff_drive_controller:
     angular.z.has_velocity_limits: true
     angular.z.max_velocity: 1.0
     angular.z.min_velocity: -1.0
+    publish_odom: true
+    enable_odom_tf: true
+    odom_frame_id: odom
+    base_frame_id: base_link
+    publish_odom: true
+    enable_odom_tf: true
