@@ -20,6 +20,7 @@ add_library(
   SHARED 
   src/mobile_base_hw_interface.cpp
   src/esp_transport.cpp
+  src/arm_hardware_interface.cpp
 )
 ament_target_dependencies(${PROJECT_NAME} rclcpp rclcpp_lifecycle hardware_interface pluginlib std_msgs)
 

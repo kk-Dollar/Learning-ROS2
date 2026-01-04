@@ -4,6 +4,12 @@
 <xacro:include filename="$(find noxbot_description_description)/urdf/materials.xacro" />
 <xacro:include filename="$(find noxbot_description_description)/urdf/noxbot_description.ros2control" />
 <xacro:include filename="$(find noxbot_description_description)/urdf/noxbot_description.gazebo" />
+<xacro:include filename="$(find noxbot_description_description)/urdf/arm.xacro" />
+
+<xacro:property name="base_length" value="0.12" />
+<xacro:property name="base_height" value="0.035" />
+
+
 <link name="base_link">
   <inertial>
     <origin xyz="-0.0005930931306221237 3.257168781287659e-08 0.034" rpy="0 0 0"/>
@@ -142,6 +148,11 @@
 </joint>
 
 
+<joint name="mobile_base_arm_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="arm_base_link" />
+        <origin xyz="${base_length / 4.0} 0 ${base_height}" rpy="0 0 0" />
+</joint>
 
 <joint name="front_left_base_joint" type="continuous">
   <origin xyz="0.04726 0.047 0.034" rpy="0 0 0"/>
@@ -174,5 +185,7 @@
   <axis xyz="0.0 1.0 0.0"/>
   <mimic joint="right_wheel_joint"/>
 </joint>
+
+
 
 </robot>

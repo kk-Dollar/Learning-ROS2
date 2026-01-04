@@ -98,15 +98,14 @@ hardware_interface::return_type MobileBaseHwInterface::write(const rclcpp::Time&
   // send left_wheel_velocity and right_wheel_velocity to esp
   if (esp_transport_)
   {
-    if (esp_transport_->isAlive())
+    if (!esp_transport_->isAlive())
     {
-      esp_transport_->sendWheelCommands(left_wheel_velocity_cmd_, right_wheel_velocity_cmd_);
+      // Warn but still forward commands so the ESP can move even before feedback arrives
+      RCLCPP_WARN_THROTTLE(node_->get_logger(), *node_->get_clock(), 2000,
+                           "ESP feedback stale; forwarding commands anyway");
     }
-    else
-    {
-      // Explicit STOP command
-      esp_transport_->sendWheelCommands(0.0, 0.0);
-    }
+
+    esp_transport_->sendWheelCommands(left_wheel_velocity_cmd_, right_wheel_velocity_cmd_);
   }
 
   return hardware_interface::return_type::OK;

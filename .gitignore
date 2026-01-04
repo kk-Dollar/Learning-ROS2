@@ -4,6 +4,9 @@ install/
 log/
 ros2_control_template/
 
+
+src/project_urdf_files
+
 # IDE
 .vscode/
 *.swp
@@ -26,4 +29,4 @@ __pycache__/
 .deb
 *.md
 *.sh
-
+*.pdf

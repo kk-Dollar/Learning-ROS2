@@ -5,4 +5,9 @@
     base_class_type="hardware_interface::SystemInterface">
     <description>Hardware Interface for 4 wheel normal motor wheel with 2 virtual joint</description>
   </class>
+  <class name="arm_hardware/ArmHardwareInterface"
+  type="arm_hardware::ArmHardwareInterface"
+  base_class_type="hardware_interface::SystemInterface">
+  <description>Hardware interface for 2 joint arm </description>
+  </class>
 </library>

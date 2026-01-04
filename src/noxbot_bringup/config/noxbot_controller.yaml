@@ -5,6 +5,8 @@ controller_manager:
       type: joint_state_broadcaster/JointStateBroadcaster
     diff_drive_controller:
       type: diff_drive_controller/DiffDriveController 
+    forward_command_controller:
+      type: forward_command_controller/ForwardCommandController  
 
 diff_drive_controller:
   ros__parameters:
@@ -28,3 +30,8 @@ diff_drive_controller:
     base_frame_id: base_link
     publish_odom: true
     enable_odom_tf: true
+
+forward_command_controller:
+  ros__parameters:
+    joints: [arm_joint1, arm_joint2]
+    interface_name: position
