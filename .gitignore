@@ -6,6 +6,7 @@ ros2_control_template/
 
 
 src/project_urdf_files
+src/udemy_robot
 
 # IDE
 .vscode/

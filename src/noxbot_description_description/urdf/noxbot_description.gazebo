@@ -40,7 +40,13 @@
 </gazebo>
 
 <gazebo>
-<plugin filename="gz-sim-diff-drive-system"
+        <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+            <parameters>$(find noxbot_bringup)/config/noxbot_controller.yaml</parameters>
+        </plugin>
+</gazebo>
+
+<!--<gazebo>
+ <plugin filename="gz-sim-diff-drive-system"
         name="gz::sim::systems::DiffDrive">
 
 <left_joint>front_left_base_joint</left_joint>
@@ -58,7 +64,6 @@
 <tf_topic>/tf</tf_topic>
 
 </plugin>
-
-</gazebo>
+</gazebo> -->
 
 </robot>

@@ -7,7 +7,7 @@
 <xacro:include filename="$(find noxbot_description_description)/urdf/arm.xacro" />
 
 <xacro:property name="base_length" value="0.12" />
-<xacro:property name="base_height" value="0.035" />
+<xacro:property name="base_height" value="0.068" />
 
 
 <link name="base_link">

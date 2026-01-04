@@ -17,6 +17,17 @@
             <origin xyz="0 0 ${arm_base_height / 2.0}" rpy="0 0 0" />
             <material name="orange" />
         </visual>
+        <collision>
+            <geometry>
+                <box size="${arm_base_length} ${arm_base_width} ${arm_base_height}" />
+            </geometry>
+            <origin xyz="0 0 ${arm_base_height / 2.0}" rpy="0 0 0" />
+        </collision>
+        <inertial>
+            <mass value="0.5" />
+            <origin xyz="0 0 ${arm_base_height / 2.0}" rpy="0 0 0" />
+            <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
     </link>
 
     <link name="forearm_link">
@@ -27,6 +38,17 @@
             <origin xyz="0 0 ${forearm_length / 2.0}" rpy="0 0 0" />
             <material name="yellow" />
         </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="${forearm_radius}" length="${forearm_length}" />
+            </geometry>
+            <origin xyz="0 0 ${forearm_length / 2.0}" rpy="0 0 0" />
+        </collision>
+        <inertial>
+            <mass value="0.3" />
+            <origin xyz="0 0 ${forearm_length / 2.0}" rpy="0 0 0" />
+            <inertia ixx="0.001" iyy="0.001" izz="0.0001" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
     </link>
 
     <link name="hand_link">
@@ -37,6 +59,17 @@
             <origin xyz="0 0 ${hand_length / 2.0}" rpy="0 0 0" />
             <material name="orange" />
         </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="${hand_radius}" length="${hand_length}" />
+            </geometry>
+            <origin xyz="0 0 ${hand_length / 2.0}" rpy="0 0 0" />
+        </collision>
+        <inertial>
+            <mass value="0.2" />
+            <origin xyz="0 0 ${hand_length / 2.0}" rpy="0 0 0" />
+            <inertia ixx="0.001" iyy="0.001" izz="0.0001" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
     </link>
 
     <joint name="arm_joint1" type="revolute">

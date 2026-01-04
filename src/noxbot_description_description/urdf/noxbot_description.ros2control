@@ -1,9 +1,10 @@
 <?xml version="1.0" ?>
+<!-- 
 <robot name="noxbot_description" xmlns:xacro="http://www.ros.org/wiki/xacro" >
   <ros2_control name="mobile_base_hw_interface" type="system">
     <hardware>
-      <!-- <plugin>mock_components/GenericSystem</plugin>
-      <param name="calculate_dynamics">true</param> -->
+       <plugin>mock_components/GenericSystem</plugin>
+      <param name="calculate_dynamics">true</param>
       <plugin>mobile_base_hardware/MobileBaseHwInterface</plugin>
      
     </hardware>
@@ -32,4 +33,34 @@
       <state_interface name="position"/>
     </joint>
   </ros2_control>
+</robot> -->
+
+<robot name="noxbot_description" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <ros2_control name="noxbot_gazebo_hw_interface" type="system">
+        <hardware>
+            <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        </hardware>
+        <joint name="left_wheel_joint">
+            <command_interface name="velocity" />
+            <state_interface name="position" />
+            <state_interface name="velocity" />
+        </joint>
+        <joint name="right_wheel_joint">
+            <command_interface name="velocity" />
+            <state_interface name="position" />
+            <state_interface name="velocity" />
+        </joint>
+        <joint name="arm_joint1">
+            <command_interface name="position" />
+            <state_interface name="position" />
+        </joint>
+        <joint name="arm_joint2">
+            <command_interface name="position" />
+            <state_interface name="position" />
+        </joint>
+    </ros2_control>
+    
+    
 </robot>
+
