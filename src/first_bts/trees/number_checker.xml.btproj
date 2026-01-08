@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4" project_name="Project">
+    <include path="number_checker.xml"/>
+    <!-- Description of Node Models (used by Groot) -->
+    <TreeNodesModel>
+        <Action ID="CheckNumber2" editable="true">
+            <input_port name="check_value"/>
+            <output_port name="generated_number"/>
+        </Action>
+        <Action ID="CheckNumber3" editable="true">
+            <input_port name="check_value"/>
+            <output_port name="generated_number"/>
+        </Action>
+        <Action ID="PublishResult" editable="true">
+            <input_port name="topic_name"/>
+            <input_port name="generated_number"/>
+        </Action>
+        <Action ID="checkNumber1" editable="true">
+            <input_port name="check_value"/>
+            <output_port name="generated_number"/>
+        </Action>
+    </TreeNodesModel>
+</root>
