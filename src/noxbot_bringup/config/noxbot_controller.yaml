@@ -7,6 +7,8 @@ controller_manager:
       type: diff_drive_controller/DiffDriveController 
     forward_command_controller:
       type: forward_command_controller/ForwardCommandController  
+    custom_arm_controller:
+      type: arm_controller/ArmController
 
 diff_drive_controller:
   ros__parameters:
@@ -34,5 +36,11 @@ diff_drive_controller:
 
 forward_command_controller:
   ros__parameters:
-    joints: [arm_joint1, arm_joint2]
-    interface_name: position
+    joints: ["arm_joint1","arm_joint2"]
+    interface_name: "position"
+
+custom_arm_controller:
+  ros__parameters:
+     joints: ["arm_joint1","arm_joint2"]
+     interface_name: "position"
+     coefficient: 0.75

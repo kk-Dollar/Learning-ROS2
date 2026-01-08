@@ -45,10 +45,15 @@ def generate_launch_description():
         executable="spawner",
         arguments=["diff_drive_controller"]
     )
-    forward_command_controller_spawner=Node(
-        package="controller_manager",
+    # forward_command_controller_spawner=Node(
+    #     package="controller_manager",
+    #     executable="spawner",
+    #     arguments=["forward_command_controller"]
+    # )
+    arm_controller_spawner=Node(
+         package="controller_manager",
         executable="spawner",
-        arguments=["forward_command_controller"]
+        arguments=["custom_arm_controller"]
     )
     rviz_node=Node(
         package="rviz2",
@@ -66,7 +71,8 @@ def generate_launch_description():
     ld.add_action(control_node)
     ld.add_action(joint_state_broadcaster_spawner)
     ld.add_action(diff_drive_controller_spawner)
-    ld.add_action(forward_command_controller_spawner)
+    #ld.add_action(forward_command_controller_spawner)
+    ld.add_action(arm_controller_spawner)
     ld.add_action(rviz_node)
     ld.add_action(joint_state_publisher_gui_node)
     return ld
