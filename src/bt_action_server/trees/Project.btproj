@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4" project_name="Project">
+    <include path="bt_action.xml"/>
+    <!-- Description of Node Models (used by Groot) -->
+    <TreeNodesModel>
+        <Action ID="CallAction" editable="true">
+            <input_port name="server_name" default="reach_location"/>
+            <input_port name="x" default="10"/>
+            <input_port name="y" default="4"/>
+            <input_port name="timeout" default="15"/>
+        </Action>
+        <Action ID="WaitForServer" editable="true">
+            <input_port name="server_name"/>
+        </Action>
+    </TreeNodesModel>
+</root>
