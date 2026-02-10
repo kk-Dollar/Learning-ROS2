@@ -38,6 +38,9 @@ private:
   std::string left_joint_name_;
   std::string right_joint_name_;
 
+  // scale applied to differential (turn) component so motors overcome deadzone
+  double angular_scale_ = 3.0;
+
   //esp_transport variable
   rclcpp::Node::SharedPtr node_;
   std::unique_ptr<EspTransport> esp_transport_;

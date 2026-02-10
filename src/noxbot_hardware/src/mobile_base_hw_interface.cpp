@@ -24,6 +24,16 @@ hardware_interface::CallbackReturn MobileBaseHwInterface::on_init(const hardware
 
   left_wheel_velocity_cmd_ = 0.0;
   right_wheel_velocity_cmd_ = 0.0;
+
+  // angular_scale amplifies turn (differential) so wheel difference exceeds motor deadzone
+  angular_scale_ = 3.0;
+  const auto it = info.hardware_parameters.find("angular_scale");
+  if (it != info.hardware_parameters.end())
+  {
+    angular_scale_ = std::stod(it->second);
+  }
+  RCLCPP_INFO(node_->get_logger(), "mobile_base angular_scale = %.2f", angular_scale_);
+
   return CallbackReturn::SUCCESS;
 }
 
@@ -69,47 +79,62 @@ hardware_interface::CallbackReturn MobileBaseHwInterface::on_deactivate(const rc
 
 hardware_interface::return_type MobileBaseHwInterface::read(const rclcpp::Time&, const rclcpp::Duration& period)
 {
-    //for demo without encoder
+  // Read from ESP when connected
+  if (esp_transport_ && esp_transport_->isAlive())
+  {
+    left_wheel_velocity_ = esp_transport_->getLeftVelocity();
+    right_wheel_velocity_ = esp_transport_->getRightVelocity();
+    left_wheel_position_ = esp_transport_->getLeftPosition();
+    right_wheel_position_ = esp_transport_->getRightPosition();
+  }
+  else
+  {
+    // Fallback when no encoder feedback: use commanded velocity and integrate position
+    // so diff_drive_controller odometry (and RViz) still update when driving
     left_wheel_velocity_ = left_wheel_velocity_cmd_;
     right_wheel_velocity_ = right_wheel_velocity_cmd_;
-
     left_wheel_position_ += left_wheel_velocity_ * period.seconds();
     right_wheel_position_ += right_wheel_velocity_ * period.seconds();
-
-  // read from ESP
-//   if (esp_transport_ && esp_transport_->isAlive())
-//   {
-//     left_wheel_velocity_ = esp_transport_->getLeftVelocity();
-//     right_wheel_velocity_ = esp_transport_->getRightVelocity();
-
-//     left_wheel_position_ = esp_transport_->getLeftPosition();
-//     right_wheel_position_ = esp_transport_->getRightPosition();
-//   }
-//   else
-//   {
-//     // SAFETY: stop reporting motion
-//     left_wheel_velocity_ = 0.0;
-//     right_wheel_velocity_ = 0.0;
-//   }
+  }
   return hardware_interface::return_type::OK;
 }
-hardware_interface::return_type MobileBaseHwInterface::write(const rclcpp::Time&, const rclcpp::Duration&)
+hardware_interface::return_type MobileBaseHwInterface::write(
+  const rclcpp::Time&, const rclcpp::Duration&)
 {
-  // send left_wheel_velocity and right_wheel_velocity to esp
+  // if (!esp_transport_) return hardware_interface::return_type::OK;
+
+  // if (!esp_transport_->isAlive())
+  // {
+  //   // HARD SAFETY STOP
+  //   esp_transport_->sendWheelCommands(0.0, 0.0);
+  //   return hardware_interface::return_type::OK;
+  // }
+
+  // esp_transport_->sendWheelCommands(
+  //   left_wheel_velocity_cmd_,
+  //   right_wheel_velocity_cmd_);
+
+  // return hardware_interface::return_type::OK;
+    RCLCPP_INFO_THROTTLE(
+    node_->get_logger(),
+    *node_->get_clock(),
+    1000,
+    "WRITE(): left=%.3f right=%.3f",
+    left_wheel_velocity_cmd_,
+    right_wheel_velocity_cmd_
+  );
+
   if (esp_transport_)
   {
-    if (!esp_transport_->isAlive())
-    {
-      // Warn but still forward commands so the ESP can move even before feedback arrives
-      RCLCPP_WARN_THROTTLE(node_->get_logger(), *node_->get_clock(), 2000,
-                           "ESP feedback stale; forwarding commands anyway");
-    }
-
-    esp_transport_->sendWheelCommands(left_wheel_velocity_cmd_, right_wheel_velocity_cmd_);
+    // Amplify differential (turn) so wheel difference exceeds motor deadzone
+    const double mid = (left_wheel_velocity_cmd_ + right_wheel_velocity_cmd_) * 0.5;
+    const double left_out = mid + angular_scale_ * (left_wheel_velocity_cmd_ - mid);
+    const double right_out = mid + angular_scale_ * (right_wheel_velocity_cmd_ - mid);
+    esp_transport_->sendWheelCommands(left_out, right_out);
   }
-
   return hardware_interface::return_type::OK;
 }
+
 
 }  // namespace mobile_base_hardware
 #include "pluginlib/class_list_macros.hpp"

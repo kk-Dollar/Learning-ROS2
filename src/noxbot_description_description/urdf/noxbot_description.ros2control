@@ -3,10 +3,10 @@
 <robot name="noxbot_description" xmlns:xacro="http://www.ros.org/wiki/xacro" >
   <ros2_control name="mobile_base_hw_interface" type="system">
     <hardware>
-       <plugin>mock_components/GenericSystem</plugin>
-      <param name="calculate_dynamics">true</param>
-      <!-- <plugin>mobile_base_hardware/MobileBaseHwInterface</plugin> -->
-     
+       <!-- <plugin>mock_components/GenericSystem</plugin>
+      <param name="calculate_dynamics">true</param> -->
+      <plugin>mobile_base_hardware/MobileBaseHwInterface</plugin>
+      <param name="angular_scale">3.0</param>
     </hardware>
     <joint name="left_wheel_joint">
       <command_interface name="velocity"/>
@@ -21,9 +21,9 @@
   </ros2_control>
   <ros2_control name="arm_joint_hardware_interface" type="system">
     <hardware>
-     <plugin>mock_components/GenericSystem</plugin>
-      <param name="calculate_dynamics">true</param>
-      <!-- <plugin>arm_hardware/ArmHardwareInterface</plugin> -->
+     <!-- <plugin>mock_components/GenericSystem</plugin>
+      <param name="calculate_dynamics">true</param> -->
+      <plugin>arm_hardware/ArmHardwareInterface</plugin>
     </hardware>
         
     <joint name="arm_joint1">

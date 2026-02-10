@@ -1,0 +1,23 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: noxbot_arm_description
+    relative_path: urdf/noxbot_arm.urdf.xacro
+  srdf:
+    relative_path: config/noxbot_arm.srdf
+  package_settings:
+    author_name: krishna
+    author_email: imh10019.23@birmesra.ac.in
+    generated_timestamp: 1770645214
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position

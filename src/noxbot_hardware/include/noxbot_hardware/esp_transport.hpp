@@ -1,7 +1,7 @@
 #pragma once // talk to compiler to include once
 
 #include <rclcpp/rclcpp.hpp>
-#include <std_msgs/msg/float64_multi_array.hpp>
+#include <std_msgs/msg/float32_multi_array.hpp>
 #include <mutex> //allow lock and unlock mechanism to allow only one tread to see or update the data
 
 class EspTransport
@@ -25,12 +25,12 @@ class EspTransport
 
  private:
     //ROS callback
-    void feedbackCallback(const std_msgs::msg::Float64MultiArray::SharedPtr msg);
+    void feedbackCallback(const std_msgs::msg::Float32MultiArray::SharedPtr msg);
 
     //ROS handle
     rclcpp::Node * node_;
-    rclcpp::Publisher<std_msgs::msg::Float64MultiArray>::SharedPtr cmd_pub_;
-    rclcpp::Subscription<std_msgs::msg::Float64MultiArray>::SharedPtr fb_sub_;
+    rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr cmd_pub_;
+    rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr fb_sub_;
 
     //state storage
     double left_vel_;

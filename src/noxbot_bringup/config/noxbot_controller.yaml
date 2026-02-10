@@ -25,14 +25,15 @@ diff_drive_controller:
     linear.x.max_velocity: 1.0
     linear.x.min_velocity: -1.0
     angular.z.has_velocity_limits: true
-    angular.z.max_velocity: 1.0
-    angular.z.min_velocity: -1.0
+    angular.z.max_velocity: 3.0
+    angular.z.min_velocity: -3.0
     publish_odom: true
     enable_odom_tf: true
     odom_frame_id: odom
     base_frame_id: base_link
     publish_odom: true
     enable_odom_tf: true
+    use_stamped_vel: true
 
 forward_command_controller:
   ros__parameters:
